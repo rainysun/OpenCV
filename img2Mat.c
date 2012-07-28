@@ -1,4 +1,5 @@
 #include "cv.h"
+#include "highgui.h"
 #include <stdio.h>
 
 int main(int argc, char** argv){
@@ -14,12 +15,29 @@ int main(int argc, char** argv){
 		return 0;
 	}
 	int type;
+	printf("Size: %d*%d\n",img->width,img->height);
+	printf("Channels: %d\n",img->nChannels);
+	printf("Step: %d\n",img->widthStep);
 	if(img->nChannels == 3){
 		type = CV_8UC3;
 	}else if(img->nChannels == 4){
 		type = CV_8UC4;
 	}
 	imgMat = cvCreateMat(img->width,img->height,type);
+	int i,j;
+	CvScalar s;
+	uchar* data = (uchar* )img->imageData;
+	for(i=0;i<img->height;i++){
+		for(j=0;j<img->width;j++){
+			s=cvGet2D(img,j,i);
+			printf("[%.0f %.0f %.0f] ",s.val[0],s.val[1],s.val[2]);
+		}
+		printf("\n");
+	}
+	//for(i=0;i<100;i++){
+	//	printf("%d ",data[i]);
+	//}
+	printf("\n");
 	cvReleaseMat(&imgMat);
 	printf("imgMat released.\n");
 	cvReleaseImage(&img);

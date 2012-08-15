@@ -29,8 +29,10 @@ int main(int argc, char** argv){
 	uchar* data = (uchar* )img->imageData;
 	for(i=0;i<img->height;i++){
 		for(j=0;j<img->width;j++){
-			s=cvGet2D(img,j,i);
+			s=cvGet2D(img,i,j);
+			//if(s.val[0] != 255){
 			printf("[%.0f %.0f %.0f] ",s.val[0],s.val[1],s.val[2]);
+			//}
 		}
 		printf("\n");
 	}

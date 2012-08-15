@@ -20,10 +20,8 @@ int main(int argc, char** argv){
 
 	CvPoint minLoc;
 	CvPoint maxLoc;
-	//Point matchLoc;
 	double minVal;
 	double maxVal;
-	//CvMat*  mat;
 	cvMinMaxLoc( result, &minVal, &maxVal, &minLoc, &maxLoc, 0);
 	cvRectangle(source, minLoc, cvPoint(minLoc.x+tmpl->width,minLoc.y+tmpl->height),cvScalar(0,0,255,1),1,8,0);
 
